@@ -11,16 +11,22 @@
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
 
-    Route::get('/', function () {
+Route::group(['middleware' => 'web'], function () {
+		Route::get('/contact', function () {
+        return view('contact');
+    });	    
+
+	    Route::get('/about', function () {
+        return view('about');
+    });
+
+	    Route::get('/', function () {
         return view('welcome');
     });
 
-});
-
-Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
 });

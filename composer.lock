@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5c8f5128f3db49b1751a8573a9b6fed6",
-    "content-hash": "de31e9de9a6ebb3b7cc820cdd1b78f19",
+    "hash": "8ba62383509e992d0b9c587c3abad954",
+    "content-hash": "8b1485987e7c5949da82435d403e52e8",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1779,54 +1779,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "cornford/googlmapper",
-            "version": "v2.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bradcornford/Googlmapper.git",
-                "reference": "d821a1f1e1413f50015c8fad625b8117022992b4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bradcornford/Googlmapper/zipball/d821a1f1e1413f50015c8fad625b8117022992b4",
-                "reference": "d821a1f1e1413f50015c8fad625b8117022992b4",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.9.1",
-                "phpspec/phpspec": "2.0.*@dev"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Cornford\\Googlmapper": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bradley Cornford",
-                    "email": "me@bradleycornford.co.uk"
-                }
-            ],
-            "description": "An easy way to integrate Google Maps with Laravel.",
-            "keywords": [
-                "google",
-                "laravel",
-                "map",
-                "mapping",
-                "maps",
-                "streetview"
-            ],
-            "time": "2016-02-23 16:05:40"
-        },
         {
             "name": "doctrine/instantiator",
             "version": "1.0.5",

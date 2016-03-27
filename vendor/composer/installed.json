@@ -1331,56 +1331,6 @@
         "homepage": "https://symfony.com"
     },
     {
-        "name": "cornford/googlmapper",
-        "version": "v2.8.0",
-        "version_normalized": "2.8.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/bradcornford/Googlmapper.git",
-            "reference": "d821a1f1e1413f50015c8fad625b8117022992b4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/bradcornford/Googlmapper/zipball/d821a1f1e1413f50015c8fad625b8117022992b4",
-            "reference": "d821a1f1e1413f50015c8fad625b8117022992b4",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "mockery/mockery": "0.9.1",
-            "phpspec/phpspec": "2.0.*@dev"
-        },
-        "time": "2016-02-23 16:05:40",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Cornford\\Googlmapper": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Bradley Cornford",
-                "email": "me@bradleycornford.co.uk"
-            }
-        ],
-        "description": "An easy way to integrate Google Maps with Laravel.",
-        "keywords": [
-            "google",
-            "laravel",
-            "map",
-            "mapping",
-            "maps",
-            "streetview"
-        ]
-    },
-    {
         "name": "vlucas/phpdotenv",
         "version": "v2.2.0",
         "version_normalized": "2.2.0.0",

@@ -1,10 +1,8 @@
 @extends ('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
 
-<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -63,7 +61,38 @@
                         </div>
                         <hr />
                         <div id="map1" class="map">
-                            {!! Mapper::render() !!}
+                             <div id="map-container" class="col-md-6"></div>
+ 
+                            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+                            <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+                            <!-- Include all compiled plugins (below), or include individual files as needed -->
+                            <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+                            <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+                                <script>    
+                             
+                                  function init_map() {
+                                    var var_location = new google.maps.LatLng(40.6310,-73.9544);
+                             
+                                    var var_mapoptions = {
+                                      center: var_location,
+                                      zoom: 16
+                                    };
+                             
+                                    var var_marker = new google.maps.Marker({
+                                        position: var_location,
+                                        map: var_map,
+                                        title:"Venice"});
+                             
+                                    var var_map = new google.maps.Map(document.getElementById("map-container"),
+                                        var_mapoptions);
+                             
+                                    var_marker.setMap(var_map); 
+                             
+                                  }
+                             
+                                  google.maps.event.addDomListener(window, 'load', init_map);
+                             
+                                </script>
                         </div>
                     </div>
                 </div>
@@ -76,7 +105,7 @@
     .map {
         min-width: 300px;
         min-height: 300px;
-        width: 100%;
+        width: 200%;
         height: 100%;
     }
 
@@ -87,42 +116,10 @@
         font-size: 27px;
         padding: 10px;
     }
-</style>
-<style>
-      #map-container { height: 300px }
+
+    #map-container { 
+        height: 300px 
+    }
     </style>
 
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-<!--Google Maps API-->
-	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script>	
- 
-      function init_map() {
-		var var_location = new google.maps.LatLng(45.430817,12.331516);
- 
-        var var_mapoptions = {
-          center: var_location,
-          zoom: 14
-        };
- 
-		var var_marker = new google.maps.Marker({
-			position: var_location,
-			map: var_map,
-			title:"Venice"});
- 
-        var var_map = new google.maps.Map(document.getElementById("map-container"),
-            var_mapoptions);
- 
-		var_marker.setMap(var_map);	
- 
-      }
- 
-      google.maps.event.addDomListener(window, 'load', init_map);
- 
-    </script>
-</body>
-</html>
 @endsection

@@ -40,9 +40,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">About Us
-                    <small>It's Nice to Meet You!</small>
+                    
                 </h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
+                <p>We are a group of undergraduate students who are determined to help students and tutors to find the best match based on your needs.</p>
             </div>
         </div>
 
@@ -101,7 +101,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Tutor Connection 2016</p>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

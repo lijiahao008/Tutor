@@ -13,6 +13,9 @@
 
 
 Route::group(['middleware' => 'web'], function () {
+
+        Route::get('/user_profile', 'PagesController@getProfile');
+
 		Route::get('/contact', 'PagesController@getContact');
 
 	    Route::get('/about', 'PagesController@getAbout');

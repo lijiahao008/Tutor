@@ -71,6 +71,18 @@
 
     </div>
     <!-- /.container -->
+
+    <style>
+
+        .img-center {
+            margin: 0 auto;
+        }
+
+        footer {
+            margin: 50px 0;
+        }
+    </style>
+
 </body>
 
 

@@ -19,4 +19,9 @@ class PagesController extends Controller {
 		return view('contact');
 	}
 
+	public function getProfile() {
+
+		return view('user_profile');
+	}
+
 }

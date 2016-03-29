@@ -60,7 +60,7 @@
                         </div>
                         <hr />
                         <div id="map1" class="map">
-                             <div id="map-container" class="col-md-6"></div>
+                             <div id="map-container" class="col-md-6">
  
                            
                             <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -89,6 +89,7 @@
                                   google.maps.event.addDomListener(window, 'load', init_map);
                              
                                 </script>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,7 +115,7 @@
     }
 
     #map-container { 
-        height: 300px 
+        height: 300px; 
     }
 </style>
 

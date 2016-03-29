@@ -291,9 +291,12 @@
         </div><!--/col-9-->
     </div><!--/row-->
 
-@endsection
+
+
 
 <script>
+        
+  $(document).ready(function() {
     /* pagination */
     $.fn.pageMe = function(opts){
         var $this = this,
@@ -409,4 +412,8 @@
 
     $('#items').pageMe({pagerSelector:'#myPager',childSelector:'tr',showPrevNext:true,hidePageNumbers:false,perPage:5});
     /****/
+ });
+        
 </script>
+
+@endsection

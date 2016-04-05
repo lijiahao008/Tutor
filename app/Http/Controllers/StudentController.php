@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Student;
+use Session;
+
 
 class StudentController extends Controller
 {
@@ -38,11 +40,11 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,array(
-                'date_of_birth' => 'required',
-                'education_level' => 'required',
-                'zip' => 'required',
-                'phone_number' => 'required',
-                'photo' => 'required'
+                'date_of_birth' => 'required|before:today',
+                'education_level' => 'required|max:100',
+                'zip' => 'required|integer|digits:5',
+                'phone_number' => 'required|integer',
+                'photo' => 'required|image'
                 ));
 
         $student = new Student;
@@ -56,6 +58,8 @@ class StudentController extends Controller
 
         $student -> save();
 
+        Session::flash('success','Successfully created!');
+
         return redirect()->route('students.show', $student->id);//
         
     }
@@ -68,7 +72,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $student = Student::find($id);
+        return view('students.show')->withStudent($student);
     }
 
     /**

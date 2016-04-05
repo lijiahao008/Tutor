@@ -37,13 +37,13 @@
         <section style="padding-bottom: 50px; padding-top: 50px;">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="http://placeholder.of.today/200x200" class="img-rounded img-responsive" />
+                    <img src="http://placeholder.of.today/200x200" class="img-circle img-responsive" />
                     <br />
                     <br />
                         {{ Form::label('date_of_birth', 'Date Of Birth:') }}
     					{{ Form::date ('date_of_birth', null,array('class'=>'form-control')) }}
 
-    					{{ Form::label('zip', 'ZIP:')}}
+    					{{ Form::label('zip', 'Zip Code:')}}
     					{{ Form::text ('zip', null,array('class'=>'form-control')) }}
 
 					    {{ Form::label('Photo', 'Profile Image') }}

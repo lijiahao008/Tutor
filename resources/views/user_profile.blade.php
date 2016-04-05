@@ -20,7 +20,7 @@
                
           <div class="panel panel-default">
             <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="http://bootply.com">bootply.com</a></div>
+            <div class="panel-body"><a href="http://google.com">google.com</a></div>
           </div>
           
           

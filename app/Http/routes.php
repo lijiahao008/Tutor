@@ -22,8 +22,10 @@ Route::group(['middleware' => 'web'], function () {
 
 	    Route::get('/', 'PagesController@getIndex');
         
-    Route::auth();
+        Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+        Route::get('/home', 'HomeController@index');
+
+        Route::resource('students', 'StudentController');
 
 });

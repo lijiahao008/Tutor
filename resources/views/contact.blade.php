@@ -60,7 +60,7 @@
                         </div>
                         <hr />
                         <div id="map1" class="map">
-                             <div id="map-container" class="col-md-6">
+                             <div id="map-container" class="col-md-6" >
  
                            
                             <script src="http://maps.google.com/maps/api/js?sensor=false"></script>

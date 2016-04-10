@@ -32,14 +32,14 @@
     </style>
 
 
-{!! Form:: open(array ('route'=>'students.store', 'files'=>true)) !!}
+{!! Form::model($student,['route'=> ['students.update', $student->id],'method' => 'PUT']) !!}
     <div class="container">
         <section style="padding-bottom: 50px; padding-top: 50px;">
             <div class="row">
                 <div class="col-md-4">
-              
-                    <img src="http://placeholder.of.today/200x200" class="img-circle img-responsive" />
-        
+                    @if (Storage::disk('local')->has($student->phone_number . '-' . $student->id . '.jpg'))
+                        <img src="{{ route('student.photo', ['filename' => $student->phone_number . '-' . $student->id . '.jpg']) }}" class="img-circle img-responsive" />
+                    @endif
                     <br />
                     <br />
                         {{ Form::label('date_of_birth', 'Date Of Birth:') }}

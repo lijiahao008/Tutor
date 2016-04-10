@@ -18,7 +18,6 @@ class CreateStudentsTable extends Migration
             $table->string('education_level');
             $table->integer('zip');
             $table->integer('phone_number');
-            $table->binary('photo');
             $table->timestamps();
         });
     }

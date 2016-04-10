@@ -6,8 +6,10 @@
 <div class="container">
 	<div class="row">
   		<div class="col-sm-10"><h1>Joeuser</h1></div>
-    	<div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="{{ ($student->photo) }}"></a></div>
-    </div>
+        @if (Storage::disk('local')->has($student->phone_number . '-' . $student->id . '.jpg'))
+          <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="{{ route('student.photo', ['filename' => $student->phone_number . '-' . $student->id . '.jpg']) }}"></a></div>
+        @endif
+  </div>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
               
@@ -17,15 +19,10 @@
             <li class="list-group-item text-right"><span class="pull-left"><strong>Date Of Birth</strong></span> {{$student->date_of_birth}}</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Phone Number</strong></span> {{$student->phone_number}}</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Zip Code</strong></span> {{$student->zip}}</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Member Since</strong></span> {{$student->created_at}}</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Last Seen</strong></span> {{$student->updated_at}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Member Since</strong></span> {{date('M j, Y', strtotime($student->created_at)) }}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Last Seen</strong></span> {{date('M j, Y H:i', strtotime($student->updated_at)) }}</li>
           </ul> 
-               
-          <div class="panel panel-default">
-            <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="http://google.com">google.com</a></div>
-          </div>
-          
+
           
           <ul class="list-group">
             <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
@@ -283,6 +280,13 @@
                                 <br>
                               	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
                                	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                               	
+								{!! Form::open(['route' => ['students.destroy', $student->id], 'method' => 'DELETE']) !!}
+
+								{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-lg']) !!}
+
+								{!! Form::close() !!}
+							
                             </div>
                       </div>
               	</form>

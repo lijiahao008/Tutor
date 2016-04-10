@@ -24,4 +24,9 @@ class PagesController extends Controller {
 		return view('user_profile');
 	}
 
+	public function getAfter_registration() {
+
+		return view('after_registration');
+	}
+
 }

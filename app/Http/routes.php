@@ -24,8 +24,13 @@ Route::group(['middleware' => 'web'], function () {
         
         Route::auth();
 
-        Route::get('/home', 'HomeController@index');
+        Route::get('/userimage/{filename}', [
+            'uses' => 'StudentController@getStudentPhoto',
+            'as' => 'student.photo'
+        ]);
 
         Route::resource('students', 'StudentController');
+
+        Route::get('/after_registration', 'PagesController@getAfter_registration');
 
 });

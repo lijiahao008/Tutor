@@ -51,9 +51,14 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                    <li><a href="{{ url('/about') }}">About Us</a></li>
-                    <li><a href="{{ url('/contact') }}">Contact Us</a></li>
+                    @if (Auth::guest())
+
+                    @else
+                        <li><a href="{{ url('/students') }}">Browse Students</a></li>
+                        <li><a href="{{ url('/tutors') }}">Browse Tutors</a></li>
+                    @endif
+                        <li><a href="{{ url('/about') }}">About Us</a></li>
+                        <li><a href="{{ url('/contact') }}">Contact Us</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -71,7 +76,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#"><i class="fa fa-btn fa-clock-o"></i>Matching History</a></li>
-                                <li><a href="/user_profile"><i class="fa fa-btn fa-edit"></i>Manage Profile</a></li>
+                                <li><a href="/user_profile"><i class="fa fa-btn fa-edit"></i>Edit Profile</a></li>
                                 <li><a href="#"><i class="fa fa-btn fa-cog"></i>Manage Account</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>

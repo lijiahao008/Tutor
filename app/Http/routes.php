@@ -14,7 +14,6 @@
 
 Route::group(['middleware' => 'web'], function () {
 
-        Route::get('/user_profile', 'PagesController@getProfile');
 
 		Route::get('/contact', 'PagesController@getContact');
 
@@ -24,12 +23,30 @@ Route::group(['middleware' => 'web'], function () {
         
         Route::auth();
 
-        Route::get('/userimage/{filename}', [
+        Route::get('/studentimage/{filename}', [
             'uses' => 'StudentController@getStudentPhoto',
             'as' => 'student.photo'
         ]);
 
+        Route::get('/tutorimage/{filename}', [
+            'uses' => 'TutorController@getTutorPhoto',
+            'as' => 'tutor.photo'
+        ]);
+
+        Route::get('/search_student', [
+            'uses' => 'SearchController@getStudentsResults',
+            'as' => 'search.student_results'
+        ]);
+
+        Route::get('/search_tutor', [
+            'uses' => 'SearchController@getTutorsResults',
+            'as' => 'search.tutor_results'
+        ]);
+
         Route::resource('students', 'StudentController');
+
+
+        Route::resource('tutors', 'TutorController');
 
         Route::get('/after_registration', 'PagesController@getAfter_registration');
 

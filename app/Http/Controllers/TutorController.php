@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\User;
-use App\Student;
+use App\Tutor;
 use Session;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 
-class StudentController extends Controller
+class TutorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +22,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        $tutors = Tutor::all();
 
-        return view('students.index')->withStudents($students);
+        return view('tutors.index')->withTutors($tutors);
     }
 
     /**
@@ -34,7 +34,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');//
+        return view('tutors.create');//
     }
 
     /**
@@ -50,33 +50,36 @@ class StudentController extends Controller
                 'last_name' => 'required|max:50',
                 'date_of_birth' => 'required|before:today',
                 'education_level' => 'required|max:100',
-                'subject' => 'required|max:100',
                 'zip' => 'required|integer|digits:5',
                 'phone_number' => 'required|integer',
+                'rate_per_hour' => 'required|integer',
+                'subject' => 'required|max:50',
+                
 
-              
                 ));
 
        
-        $student = new Student;
-        $student->first_name = $request->first_name;
-        $student->last_name = $request->last_name;
-        $student->date_of_birth = $request->date_of_birth;
-        $student->education_level = $request->education_level;
-        $student->subject = $request->subject;
-        $student->zip = $request->zip;
-        $student->phone_number = $request->phone_number;
-        $student -> save();
+        $tutor = new Tutor;
 
-        $file = $request->file('photo');
-        $filename = $request['last_name'] . '-' . $student->id . '.jpg';
+        $tutor->first_name = $request->first_name;
+        $tutor->last_name = $request->last_name;
+        $tutor->date_of_birth = $request->date_of_birth;
+        $tutor->education_level = $request->education_level;
+        $tutor->zip = $request->zip;
+        $tutor->phone_number = $request->phone_number;
+        $tutor->rate_per_hour = $request->rate_per_hour;
+        $tutor->subject = $request->subject;
+        $tutor -> save();
+
+          $file = $request->file('photo');
+        $filename = $request['rate_per_hour'] . '-' . $tutor->id . '.jpg';
         if ($file) {
             Storage::disk('local')->put($filename, File::get($file));
         }
 
-        Session::flash('success','Successfully created!');
+        Session::flash('success','Successfully Created!');
 
-        return redirect()->route('students.show', $student->id);//
+        return redirect()->route('tutors.show', $tutor->id);//
         
     }
 
@@ -88,8 +91,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $student = Student::find($id);
-        return view('students.show')->withStudent($student);
+        $tutor = Tutor::find($id);
+        return view('tutors.show')->withTutor($tutor);
     }
 
     /**
@@ -100,8 +103,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        $student = Student::find($id);
-        return view('students.edit')->withStudent($student);
+        $tutor = Tutor::find($id);
+        return view('tutors.edit')->withTutor($tutor);
     }
 
     /**
@@ -118,34 +121,37 @@ class StudentController extends Controller
                 'last_name' => 'required|max:50',
                 'date_of_birth' => 'required|before:today',
                 'education_level' => 'required|max:100',
-                'subject' => 'required|max:100',
                 'zip' => 'required|integer|digits:5',
                 'phone_number' => 'required|integer',
+                'rate_per_hour' => 'required|integer',
+                'subject' => 'required|max:50',
+
                 ));
 
-        $student = Student::find($id);
+        $tutor = Tutor::find($id);
 
-        $student->first_name = $request->input('first_name');
-        $student->last_name = $request->input('last_name');
-        $student->date_of_birth = $request->input('date_of_birth');
-        $student->education_level = $request->input('education_level');
-        $student->subject = $request->input('subject');
-        $student->zip = $request->input('zip');
-        $student->phone_number = $request->input('phone_number');
-        
+        $tutor->first_name = $request->input('first_name');
+        $tutor->last_name = $request->input('last_name');
+        $tutor->date_of_birth = $request->input('date_of_birth');
+        $tutor->education_level = $request->input('education_level');
+        $tutor->zip = $request->input('zip');
+        $tutor->phone_number = $request->input('phone_number');
+        $tutor->rate_per_hour = $request->input('rate_per_hour');
+        $tutor->subject = $request->input('subject');
+
         $file = $request->file('photo');
-        $filename = $request['last_name'] . '-' . $student->id . '.jpg';
+        $filename = $request['rate_per_hour'] . '-' . $tutor->id . '.jpg';
         if ($file) {
             Storage::disk('local')->put($filename, File::get($file));
         }
 
-        $student -> save();//
+        $tutor -> save();//
 
 
 
         Session::flash('success', 'Profile was successfully updated');
 
-        return redirect()->route('students.show', $student->id);
+        return redirect()->route('tutors.show', $tutor->id);
     }
 
     /**
@@ -156,16 +162,16 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        $student = Student::find($id);
+        $tutor = Tutor::find($id);
 
-        $student->delete();
+        $tutor->delete();
 
-        Session::flash('success', 'Your student profile was successfully deleted.');
+        Session::flash('success', 'Your tutor profile was successfully deleted.');
 
-        return redirect()->route('students.index');//
+        return redirect()->route('tutors.index');//
     }
 
-    public function getStudentPhoto($filename)
+    public function getTutorPhoto($filename)
     {
         $file = Storage::disk('local')->get($filename);
         return new Response($file, 200);

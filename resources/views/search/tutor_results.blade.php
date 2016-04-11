@@ -3,29 +3,32 @@
 @section('content')
 
 <div class="container">
+	<div class="col-lg-12">
+        <h1 class="page-header">
+            Results for "{{Request::input('search_tutors')}} within our tutors datbase":
+        </h1>
+    </div>
+</div>
+			
+<div class="container">
   <div class="row">
-
     <hr>
     <section id="pinBoot">
-    	@foreach ($students as $student)
+
+    	@foreach ($tutors as $tutor)
 
       <article class="white-panel">
-      	@if (Storage::disk('local')->has($student->last_name . '-' . $student->id . '.jpg'))
-        	<img src="{{ route('student.photo', ['filename' => $student->last_name . '-' . $student->id . '.jpg']) }}" class="img-circle img-responsive" />
+      	@if (Storage::disk('local')->has($tutor->rate_per_hour . '-' . $tutor->id . '.jpg'))
+        	<img src="{{ route('tutor.photo', ['filename' => $tutor->rate_per_hour . '-' . $tutor->id . '.jpg']) }}" class="img-circle img-responsive" />
         @endif
-        <h4><a href="{{route('students.show', $student->id)}}">{{$student->first_name}}</a></h4>
-        <p>{{$student->education_level}}</p>
+        <h4><a href="{{route('tutors.show', $tutor->id)}}">{{$tutor->first_name}}</a></h4>
+        <p>{{$tutor->rate_per_hour}}</p>
       </article>
 
       	@endforeach
-      
 
     </section>
-
-
     <hr>
-
-
   </div>
 
 </div>
@@ -40,6 +43,7 @@
 	  position: relative;
 	  max-width: 100%;
 	  width: 100%;
+	  padding-top:500px 0;
 	}
 	img {
 	  width: 100%;

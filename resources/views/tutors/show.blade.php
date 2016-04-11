@@ -5,9 +5,9 @@
 <hr>
 <div class="container">
 	<div class="row">
-  		<div class="col-sm-10"><h1>{{$student->first_name}}</h1></div>
-        @if (Storage::disk('local')->has($student->last_name . '-' . $student->id . '.jpg'))
-          <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="{{ route('student.photo', ['filename' => $student->last_name . '-' . $student->id . '.jpg']) }}"></a></div>
+  		<div class="col-sm-10"><h1>Joeuser</h1></div>
+        @if (Storage::disk('local')->has($tutor->rate_per_hour . '-' . $tutor->id . '.jpg'))
+          <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="{{ route('tutor.photo', ['filename' => $tutor->rate_per_hour . '-' . $tutor->id . '.jpg']) }}"></a></div>
         @endif
   </div>
     <div class="row">
@@ -15,12 +15,13 @@
               
           <ul class="list-group">
             <li class="list-group-item text-muted">Profile</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Education Level</strong></span> {{$student->education_level}}</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Date Of Birth</strong></span> {{$student->date_of_birth}}</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Phone Number</strong></span> {{$student->phone_number}}</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Zip Code</strong></span> {{$student->zip}}</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Interested subject</strong></span> {{$student->subject}}</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Member Since</strong></span> {{date('M j, Y', strtotime($student->created_at)) }}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Education Level</strong></span> {{$tutor->education_level}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Date Of Birth</strong></span> {{$tutor->date_of_birth}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Phone Number</strong></span> {{$tutor->phone_number}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Zip Code</strong></span> {{$tutor->zip}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Subject</strong></span> {{$tutor->subject}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Hourly Rate</strong></span> {{$tutor->rate_per_hour}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Member Since</strong></span> {{date('M j, Y', strtotime($tutor->created_at)) }}</li>
           </ul> 
 
           

@@ -32,17 +32,16 @@
     </style>
 
 
-{!! Form::model($student,['route'=> ['students.update', $student->id],'method' => 'PUT']) !!}
+{!! Form:: open(array ('route'=>'tutors.store', 'files'=>true)) !!}
     <div class="container">
         <section style="padding-bottom: 50px; padding-top: 50px;">
             <div class="row">
                 <div class="col-md-4">
-                    @if (Storage::disk('local')->has($student->last_name . '-' . $student->id . '.jpg'))
-                        <img src="{{ route('student.photo', ['filename' => $student->last_name . '-' . $student->id . '.jpg']) }}" class="img-circle img-responsive" />
-                    @endif
+              
+                    <img src="http://placeholder.of.today/200x200" class="img-circle img-responsive" />
+        
                     <br />
                     <br />
-
 
                         {{ Form::label('first_name', 'First Name:') }}
                         {{ Form::text ('first_name', null,array('class'=>'form-control')) }}
@@ -81,16 +80,14 @@
                         	{{ Form::label('phone_number', 'Phone number:')}}
     						{{ Form::text ('phone_number', null,array('class'=>'form-control'))}}
 
-    						{{ Form::label('subject', 'Interested Subject:')}}
-    						{{ Form::select('subject', array('Computer Science', 'English',  'Math'),array('class'=>'form-control'),['placeholder' => 'Pick a subject...']) }}
 
-    						{{ Form::submit('Update', array('class' => 'btn btn-success btn-lg', 'style'=>'margin-top: 20px;')) }}
+                            {{ Form::label('rate_per_hour', 'Your Rate:')}}
+                            {{ Form::text ('rate_per_hour', null,array('class'=>'form-control'))}}
 
-                            {!! Form::open(['route' => ['students.destroy', $student->id], 'method' => 'DELETE']) !!}
+    						{{ Form::label('subject', 'Subject:')}}
+    						{{ Form::select('subject', array('Computer Science', 'English', 'Math'),array('class'=>'form-control'),['placeholder' => 'Pick a subject...']) }}
 
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-lg', 'style'=>'margin-top: 20px;']) !!}
-
-                            {!! Form::close() !!}
+    						{{ Form::submit('Create', array('class' => 'btn btn-success btn-lg btn-block', 'style'=>'margin-top: 20px;')) }}
                         <br>
                     </div>
                 </div>

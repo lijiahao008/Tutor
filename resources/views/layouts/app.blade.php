@@ -71,12 +71,13 @@
                       
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->first_name }} <span class="caret"></span>
+                                {{ Auth::user()->nick_name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#"><i class="fa fa-btn fa-clock-o"></i>Matching History</a></li>
-                                <li><a href="/user_profile"><i class="fa fa-btn fa-edit"></i>Edit Profile</a></li>
+                                <li><a href="#"><i class="fa fa-btn fa-edit"></i>Manage Student Profile</a></li>
+                                <li><a href="#"><i class="fa fa-btn fa-edit"></i>Manage Tutor Profile</a></li>
                                 <li><a href="#"><i class="fa fa-btn fa-cog"></i>Manage Account</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
@@ -86,8 +87,8 @@
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">
                             <input type="text" class="form-control" placeholder="Search">
-                            </div>
                             <button type="submit" class="btn btn-default">Submit</button>
+                            </div>
                         </form>
                     @endif
                 </ul>

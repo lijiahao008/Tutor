@@ -3,10 +3,18 @@
 @section('content')
 
 <div class="container">
+	<div class="col-lg-12">
+        <h1 class="page-header">
+            Results for "{{Request::input('search_students')}}" within our students database:
+        </h1>
+    </div>
+</div>
+			
+<div class="container">
   <div class="row">
-
     <hr>
     <section id="pinBoot">
+
     	@foreach ($students as $student)
 
       <article class="white-panel">
@@ -18,14 +26,9 @@
       </article>
 
       	@endforeach
-      
 
     </section>
-
-
     <hr>
-
-
   </div>
 
 </div>
@@ -40,6 +43,7 @@
 	  position: relative;
 	  max-width: 100%;
 	  width: 100%;
+	  padding-top:500px 0;
 	}
 	img {
 	  width: 100%;

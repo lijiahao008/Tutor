@@ -32,17 +32,16 @@
     </style>
 
 
-{!! Form::model($student,['route'=> ['students.update', $student->id],'method' => 'PUT']) !!}
+{!! Form::model($tutor,['route'=> ['tutors.update', $tutor->id],'method' => 'PUT']) !!}
     <div class="container">
         <section style="padding-bottom: 50px; padding-top: 50px;">
             <div class="row">
                 <div class="col-md-4">
-                    @if (Storage::disk('local')->has($student->last_name . '-' . $student->id . '.jpg'))
-                        <img src="{{ route('student.photo', ['filename' => $student->last_name . '-' . $student->id . '.jpg']) }}" class="img-circle img-responsive" />
+                    @if (Storage::disk('local')->has($tutor->rate_per_hour . '-' . $tutor->id . '.jpg'))
+                        <img src="{{ route('tutor.photo', ['filename' => $tutor->rate_per_hour . '-' . $tutor->id . '.jpg']) }}" class="img-circle img-responsive" />
                     @endif
                     <br />
                     <br />
-
 
                         {{ Form::label('first_name', 'First Name:') }}
                         {{ Form::text ('first_name', null,array('class'=>'form-control')) }}
@@ -81,12 +80,16 @@
                         	{{ Form::label('phone_number', 'Phone number:')}}
     						{{ Form::text ('phone_number', null,array('class'=>'form-control'))}}
 
-    						{{ Form::label('subject', 'Interested Subject:')}}
-    						{{ Form::select('subject', array('Computer Science', 'English',  'Math'),array('class'=>'form-control'),['placeholder' => 'Pick a subject...']) }}
+    						
+                            {{ Form::label('rate_per_hour', 'Your Rate:')}}
+                            {{ Form::text ('rate_per_hour', null,array('class'=>'form-control'))}}
+
+                            {{ Form::label('subject', 'Subject:')}}
+                            {{ Form::select('subject', array('Computer Science', 'English', 'Math'),array('class'=>'form-control'),['placeholder' => 'Pick a subject...']) }}
 
     						{{ Form::submit('Update', array('class' => 'btn btn-success btn-lg', 'style'=>'margin-top: 20px;')) }}
 
-                            {!! Form::open(['route' => ['students.destroy', $student->id], 'method' => 'DELETE']) !!}
+                            {!! Form::open(['route' => ['tutors.destroy', $tutor->id], 'method' => 'DELETE']) !!}
 
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-lg', 'style'=>'margin-top: 20px;']) !!}
 

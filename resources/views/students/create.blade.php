@@ -42,6 +42,15 @@
         
                     <br />
                     <br />
+
+
+                        {{ Form::label('first_name', 'First Name:') }}
+                        {{ Form::text ('first_name', null,array('class'=>'form-control')) }}
+
+
+                        {{ Form::label('last_name', 'Last Name:') }}
+                        {{ Form::text ('last_name', null,array('class'=>'form-control')) }}
+
                         {{ Form::label('date_of_birth', 'Date Of Birth:') }}
     					{{ Form::date ('date_of_birth', null,array('class'=>'form-control')) }}
 
@@ -72,10 +81,10 @@
                         	{{ Form::label('phone_number', 'Phone number:')}}
     						{{ Form::text ('phone_number', null,array('class'=>'form-control'))}}
 
-    						{{ Form::label('major', 'Interested Major:')}}
-    						{{ Form::select('major', array('C' => 'Computer Science','E' => 'English', 'M' => 'Math'),array('class'=>'form-control'),['placeholder' => 'Pick a major...']) }}
+    						{{ Form::label('subject', 'Interested Subject:')}}
+    						{{ Form::select('subject', array('Computer Science','English', 'Math'),array('class'=>'form-control'),['placeholder' => 'Pick a subject...']) }}
 
-    						{{ Form::submit('Submit', array('class' => 'btn btn-success btn-lg btn-block', 'style'=>'margin-top: 20px;')) }}
+    						{{ Form::submit('Create', array('class' => 'btn btn-success btn-lg btn-block', 'style'=>'margin-top: 20px;')) }}
                         <br>
                     </div>
                 </div>

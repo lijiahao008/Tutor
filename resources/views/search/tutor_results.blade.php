@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="col-lg-12">
         <h1 class="page-header">
-            Results for "{{Request::input('search_tutors')}} within our tutors datbase":
+            Results for "{{Request::input('search_tutors')}}" within our tutors datbase:
         </h1>
     </div>
 </div>
@@ -22,7 +22,7 @@
         	<img src="{{ route('tutor.photo', ['filename' => $tutor->rate_per_hour . '-' . $tutor->id . '.jpg']) }}" class="img-circle img-responsive" />
         @endif
         <h4><a href="{{route('tutors.show', $tutor->id)}}">{{$tutor->first_name}}</a></h4>
-        <p>{{$tutor->rate_per_hour}}</p>
+        <p>{{$tutor->rate_per_hour}} dollars per hour</p>
       </article>
 
       	@endforeach

@@ -2,37 +2,9 @@
 
 @section('content')
 
-    <style type="text/css">
-               .btn-social {
-            color: white;
-            opacity: 0.8;
-        }
-
-            .btn-social:hover {
-                color: white;
-                opacity: 1;
-                text-decoration: none;
-            }
-
-        .btn-facebook {
-            background-color: #3b5998;
-        }
-
-        .btn-twitter {
-            background-color: #00aced;
-        }
-
-        .btn-linkedin {
-            background-color: #0e76a8;
-        }
-
-        .btn-google {
-            background-color: #c32f10;
-        }
-    </style>
 
 
-{!! Form::model($tutor,['route'=> ['tutors.update', $tutor->id],'method' => 'PUT']) !!}
+
     <div class="container">
         <section style="padding-bottom: 50px; padding-top: 50px;">
             <div class="row">
@@ -42,7 +14,7 @@
                     @endif
                     <br />
                     <br />
-
+                        {!! Form::model($tutor,['route'=> ['tutors.update', $tutor->id],'method' => 'PUT']) !!}
                         {{ Form::label('first_name', 'First Name:') }}
                         {{ Form::text ('first_name', null,array('class'=>'form-control')) }}
 
@@ -89,15 +61,16 @@
 
     						{{ Form::submit('Update', array('class' => 'btn btn-success btn-lg', 'style'=>'margin-top: 20px;')) }}
 
+                        <br>
+                    </div>
+                </div>
+            </div>
+                            {!! Form::close() !!}
                             {!! Form::open(['route' => ['tutors.destroy', $tutor->id], 'method' => 'DELETE']) !!}
 
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-lg', 'style'=>'margin-top: 20px;']) !!}
 
                             {!! Form::close() !!}
-                        <br>
-                    </div>
-                </div>
-            </div>
             <!-- ROW END -->
 
 
@@ -109,7 +82,8 @@
 
     
     
-{!! Form::close() !!}
+
+
 	               
 
 @endsection

@@ -2,37 +2,7 @@
 
 @section('content')
 
-    <style type="text/css">
-               .btn-social {
-            color: white;
-            opacity: 0.8;
-        }
 
-            .btn-social:hover {
-                color: white;
-                opacity: 1;
-                text-decoration: none;
-            }
-
-        .btn-facebook {
-            background-color: #3b5998;
-        }
-
-        .btn-twitter {
-            background-color: #00aced;
-        }
-
-        .btn-linkedin {
-            background-color: #0e76a8;
-        }
-
-        .btn-google {
-            background-color: #c32f10;
-        }
-    </style>
-
-
-{!! Form::model($student,['route'=> ['students.update', $student->id],'method' => 'PUT']) !!}
     <div class="container">
         <section style="padding-bottom: 50px; padding-top: 50px;">
             <div class="row">
@@ -43,7 +13,7 @@
                     <br />
                     <br />
 
-
+                        {!! Form::model($student,['route'=> ['students.update', $student->id],'method' => 'PUT']) !!}
                         {{ Form::label('first_name', 'First Name:') }}
                         {{ Form::text ('first_name', null,array('class'=>'form-control')) }}
 
@@ -84,19 +54,20 @@
     						{{ Form::label('subject', 'Interested Subject:')}}
     						{{ Form::select('subject', array('Computer Science', 'English',  'Math'),array('class'=>'form-control'),['placeholder' => 'Pick a subject...']) }}
 
-    						{{ Form::submit('Update', array('class' => 'btn btn-success btn-lg', 'style'=>'margin-top: 20px;')) }}
+    						{{ Form::submit('Update', array('class' => 'btn btn-success btn-lg btn-block', 'style'=>'margin-top: 20px;')) }}
 
+                            {!! Form::close() !!}
+                    </div>
+
+                </div>
+            </div>
+            <!-- ROW END -->
                             {!! Form::open(['route' => ['students.destroy', $student->id], 'method' => 'DELETE']) !!}
 
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-lg', 'style'=>'margin-top: 20px;']) !!}
 
                             {!! Form::close() !!}
-                        <br>
-                    </div>
-                </div>
-            </div>
-            <!-- ROW END -->
-
+           
 
         </section>
         <!-- SECTION END -->
@@ -106,7 +77,7 @@
 
     
     
-{!! Form::close() !!}
+
 	               
 
 @endsection

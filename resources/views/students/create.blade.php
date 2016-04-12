@@ -2,35 +2,6 @@
 
 @section('content')
 
-    <style type="text/css">
-               .btn-social {
-            color: white;
-            opacity: 0.8;
-        }
-
-            .btn-social:hover {
-                color: white;
-                opacity: 1;
-                text-decoration: none;
-            }
-
-        .btn-facebook {
-            background-color: #3b5998;
-        }
-
-        .btn-twitter {
-            background-color: #00aced;
-        }
-
-        .btn-linkedin {
-            background-color: #0e76a8;
-        }
-
-        .btn-google {
-            background-color: #c32f10;
-        }
-    </style>
-
 
 {!! Form:: open(array ('route'=>'students.store', 'files'=>true)) !!}
     <div class="container">

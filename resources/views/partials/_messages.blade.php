@@ -4,6 +4,12 @@
 	</div>
 @endif
 
+@if (Session::has('failed'))
+	<div class="alert alert-danger" role="alert">
+		<strong>Failed:</strong> {{ Session::get('failed')}}
+	</div>
+@endif
+
 @if (count($errors)>0)
 	<div class = "alert alert-danger" role= "alert">
 		<strong>Error:</strong>

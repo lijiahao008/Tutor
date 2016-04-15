@@ -21,6 +21,7 @@ class CreateStudentsTable extends Migration
             $table->integer('zip');
             $table->integer('phone_number');
             $table->string('subject');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

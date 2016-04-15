@@ -22,6 +22,7 @@ class CreateTutorsTable extends Migration
             $table->integer('phone_number');
             $table->integer('rate_per_hour');
             $table->string('subject');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

@@ -74,8 +74,8 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#"><i class="fa fa-btn fa-clock-o"></i>Matching History</a></li>
-                                <li><a href="#"><i class="fa fa-btn fa-edit"></i>Manage Student Profile</a></li>
-                                <li><a href="#"><i class="fa fa-btn fa-edit"></i>Manage Tutor Profile</a></li>
+                                <li><a href="/manage_student_profile"><i class="fa fa-btn fa-edit"></i>Manage Student Profile</a></li>
+                                <li><a href="/manage_tutor_profile"><i class="fa fa-btn fa-edit"></i>Manage Tutor Profile</a></li>
                                 <li><a href="#"><i class="fa fa-btn fa-cog"></i>Manage Account</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>

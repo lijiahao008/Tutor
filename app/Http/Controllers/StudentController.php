@@ -11,10 +11,16 @@ use Session;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index','show','getStudentPhoto']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -66,7 +72,11 @@ class StudentController extends Controller
         $student->subject = $request->subject;
         $student->zip = $request->zip;
         $student->phone_number = $request->phone_number;
-        $student -> save();
+        $student->user_id = Auth::user()->id;
+        $student->save();
+
+        Auth::user()->student_id = $student->id;
+        Auth::user()->save();
 
         $file = $request->file('photo');
         $filename = $request['last_name'] . '-' . $student->id . '.jpg';
@@ -101,7 +111,14 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::find($id);
-        return view('students.edit')->withStudent($student);
+        if ($student-> user_id == Auth::user()->id){
+            return view('students.edit')->withStudent($student);
+        }
+        else{
+            Session::flash('failed','Sorry, you do not have the permission.');
+            return redirect()->route('students.index');
+        }
+
     }
 
     /**

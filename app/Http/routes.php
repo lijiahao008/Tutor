@@ -19,6 +19,10 @@ Route::group(['middleware' => 'web'], function () {
 
 	    Route::get('/about', 'PagesController@getAbout');
 
+        Route::get('/manage_student_profile', 'PagesController@manageStudentProfile');
+
+        Route::get('/manage_tutor_profile', 'PagesController@manageTutorProfile');
+
 	    Route::get('/', 'PagesController@getIndex');
         
         Route::auth();

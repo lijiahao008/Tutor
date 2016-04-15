@@ -48,6 +48,9 @@
                     <div class="panel-body">
                        <form class="navbar-form navbar-left" role="search" action="{{route('search.student_results')}}">
                             <div class="form-group">
+                                <input type="checkbox" aria-label="...">
+                                <input type="checkbox" aria-label="...">
+                                <input type="checkbox" aria-label="...">
                             <input type="text" class="form-control" name="search_students" placeholder="Search">
                             <button type="submit" class="btn btn-default">Submit</button>
                             </div>

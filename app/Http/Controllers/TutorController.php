@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Storage;
 
 class TutorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index','show','getTutorPhoto']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -69,9 +75,13 @@ class TutorController extends Controller
         $tutor->phone_number = $request->phone_number;
         $tutor->rate_per_hour = $request->rate_per_hour;
         $tutor->subject = $request->subject;
+        $tutor->user_id = Auth::user()->id;
         $tutor -> save();
 
-          $file = $request->file('photo');
+        Auth::user()->tutor_id = $tutor->id;
+        Auth::user()->save();
+
+        $file = $request->file('photo');
         $filename = $request['rate_per_hour'] . '-' . $tutor->id . '.jpg';
         if ($file) {
             Storage::disk('local')->put($filename, File::get($file));
@@ -103,8 +113,15 @@ class TutorController extends Controller
      */
     public function edit($id)
     {
-        $tutor = Tutor::find($id);
-        return view('tutors.edit')->withTutor($tutor);
+         $tutor = Tutor::find($id);
+        if ($tutor-> user_id == Auth::user()->id){
+            return view('tutors.edit')->withTutor($tutor);
+        }
+        else{
+            Session::flash('failed','Sorry, you do not have the permission.');
+            return redirect()->route('tutors.index');
+        }
+
     }
 
     /**

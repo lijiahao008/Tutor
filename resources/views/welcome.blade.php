@@ -5,7 +5,7 @@
 
 .business-header {
     height: 250px;
-    background: url('http://placehold.it/1920x250') center;
+    background: url('BC Tutor Connection banner.png') center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -17,17 +17,20 @@
 }
 
 
-
 </style>
-    
     <header class="business-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
+        
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                    
+
+                    </div>
                 </div>
             </div>
         </div>
     </header>
+    
 
 
     <!-- Page Content -->
@@ -48,11 +51,8 @@
                     <div class="panel-body">
                        <form class="navbar-form navbar-left" role="search" action="{{route('search.student_results')}}">
                             <div class="form-group">
-                                <input type="checkbox" aria-label="...">
-                                <input type="checkbox" aria-label="...">
-                                <input type="checkbox" aria-label="...">
-                            <input type="text" class="form-control" name="search_students" placeholder="Search">
-                            <button type="submit" class="btn btn-default">Submit</button>
+                                <input type="text" class="form-control" name="search_students" placeholder="Search">
+                                <button type="submit" class="btn btn-default">Submit</button>
                             </div>
                         </form>
                     </div>

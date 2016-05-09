@@ -52,6 +52,8 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::resource('tutors', 'TutorController');
 
+        Route::resource('matches', 'MatchController');
+
         Route::get('/after_registration', 'PagesController@getAfter_registration');
 
 });

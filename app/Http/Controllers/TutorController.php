@@ -11,6 +11,7 @@ use Session;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 
 class TutorController extends Controller
@@ -180,6 +181,10 @@ class TutorController extends Controller
     public function destroy($id)
     {
         $tutor = Tutor::find($id);
+        
+        Auth::user()->tutor_id = 0;
+
+        Auth::user()->save();
 
         $tutor->delete();
 

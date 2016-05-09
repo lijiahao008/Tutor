@@ -175,6 +175,10 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
 
+        Auth::user()->student_id = 0;
+
+        Auth::user()->save();
+
         $student->delete();
 
         Session::flash('success', 'Your student profile was successfully deleted.');

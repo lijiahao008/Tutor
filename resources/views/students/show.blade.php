@@ -5,7 +5,17 @@
 <hr>
 <div class="container">
 	<div class="row">
-  		<div class="col-sm-10"><h1>{{$student->first_name}}</h1></div>
+  		<div class="col-sm-10"><h1>{{$student->first_name}}</h1>
+        @if (Auth::user()->id == $student->user_id)
+
+        @else
+          {!! Form::open(['route' => ['matches.store'], 'method' => 'POST']) !!}
+
+          {!! Form::submit('Match', ['class' => 'btn btn-success btn-lg', 'style'=>'margin-top: 20px;']) !!}
+
+          {!! Form::close() !!}
+        @endif
+      </div>
         @if (Storage::disk('local')->has($student->last_name . '-' . $student->id . '.jpg'))
           <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="{{ route('student.photo', ['filename' => $student->last_name . '-' . $student->id . '.jpg']) }}"></a></div>
         @endif

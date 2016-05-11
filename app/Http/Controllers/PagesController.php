@@ -25,7 +25,7 @@ class PagesController extends Controller {
 
 	public function manageStudentProfile(){
 		if (Auth::user()->student_id == 0){
-			return redirect()->route('students.create');
+			return view('students.create');
 		}
 		else{
 			$student = Student::find(Auth::user()->student_id);
@@ -35,7 +35,7 @@ class PagesController extends Controller {
 	
 	public function manageTutorProfile(){
 		if (Auth::user()->tutor_id == 0){
-			return redirect()->route('tutors.create');
+			return view('tutors.create');
 		}
 		
 		else{

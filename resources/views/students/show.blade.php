@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <hr>
 <div class="container">
 	<div class="row">
@@ -19,6 +20,10 @@
         @if (Storage::disk('local')->has($student->last_name . '-' . $student->id . '.jpg'))
           <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="{{ route('student.photo', ['filename' => $student->last_name . '-' . $student->id . '.jpg']) }}"></a></div>
         @endif
+        
+      
+
+
   </div>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
@@ -28,6 +33,7 @@
             <li class="list-group-item text-right"><span class="pull-left"><strong>Education Level</strong></span> {{$student->education_level}}</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Date Of Birth</strong></span> {{$student->date_of_birth}}</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Phone Number</strong></span> {{$student->phone_number}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Address</strong></span> {{$student->address}}</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Zip Code</strong></span> {{$student->zip}}</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Interested subject</strong></span> {{$student->subject}}</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Member Since</strong></span> {{date('M j, Y', strtotime($student->created_at)) }}</li>
@@ -176,33 +182,19 @@
               
               <hr>
               
-              <h4>Recent Activity</h4>
+
               
               <div class="table-responsive">
-                <table class="table table-hover">
-                  
-                  <tbody>
-                    <tr>
-                      <td><i class="pull-right fa fa-edit"></i> Today, 1:00 - Jeff Manzi liked your post.</td>
-                    </tr>
-                    <tr>
-                      <td><i class="pull-right fa fa-edit"></i> Today, 12:23 - Mark Friendo liked and shared your post.</td>
-                    </tr>
-                    <tr>
-                      <td><i class="pull-right fa fa-edit"></i> Today, 12:20 - You posted a new blog entry title "Why social media is".</td>
-                    </tr>
-                    <tr>
-                      <td><i class="pull-right fa fa-edit"></i> Yesterday - Karen P. liked your post.</td>
-                    </tr>
-                    <tr>
-                      <td><i class="pull-right fa fa-edit"></i> 2 Days Ago - Philip W. liked your post.</td>
-                    </tr>
-                    <tr>
-                      <td><i class="pull-right fa fa-edit"></i> 2 Days Ago - Jeff Manzi liked your post.</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="panel panel-default">
+                  <div class="panel-heading">Nearby Students</div>
+                    <div class="panel-body">
+                      <div id="map_canvas">
+                      
+                      </div>
+                    </div>
+                </div>
               </div>
+              
               
              </div><!--/tab-pane-->
              <div class="tab-pane" id="messages">
@@ -300,7 +292,48 @@
 
         </div><!--/col-9-->
     </div><!--/row-->
+<script> var addresses = []; 
+</script>
+  @foreach ($nearby_students as $nearby_student)
+    <script>
+      addresses.push("{{$nearby_student->address}}");
+    </script>
+  @endforeach
+<script>
+$(document).ready(function () {
+    var map;
+    $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+'"{{$student->address}}"'+'&sensor=false', null, function (data) {
+    var center = data.results[0].geometry.location
+    var center_latlng = new google.maps.LatLng(center.lat, center.lng);
+    var myOptions = {
+        zoom: 12,
+        center: center_latlng,
+        mapTypeId: 'roadmap'
+    };
+    map = new google.maps.Map($('#map_canvas')[0], myOptions);
+    });
+   
+    for (var x = 0; x < addresses.length; x++) {
+        $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+addresses[x]+'&sensor=false', null, function (data) {
+            var p = data.results[0].geometry.location
+            var latlng = new google.maps.LatLng(p.lat, p.lng);
+            new google.maps.Marker({
+                position: latlng,
+                map: map
+            });
 
+        });
+    }
+
+});
+</script>
+<style>
+#map_canvas {
+            width: 500px;
+            height: 200px;
+        }
+</style>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;.js"></script>
 
 
 

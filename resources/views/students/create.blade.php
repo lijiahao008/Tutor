@@ -25,6 +25,9 @@
                         {{ Form::label('date_of_birth', 'Date Of Birth:') }}
     					{{ Form::date ('date_of_birth', null,array('class'=>'form-control')) }}
 
+                        {{ Form::label('address', 'Address:')}}
+                        {{ Form::text ('address', null,array('class'=>'form-control')) }}
+
     					{{ Form::label('zip', 'Zip Code:')}}
     					{{ Form::text ('zip', null,array('class'=>'form-control')) }}
 

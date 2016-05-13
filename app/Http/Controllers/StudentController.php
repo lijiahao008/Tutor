@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\User;
 use App\Student;
 use Session;
+use DB;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -29,6 +30,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
+        //dd($students);
 
         return view('students.index')->withStudents($students);
     }
@@ -57,6 +59,7 @@ class StudentController extends Controller
                 'date_of_birth' => 'required|before:today',
                 'education_level' => 'required|max:100',
                 'subject' => 'required|max:100',
+                'address' => 'required|max:100',
                 'zip' => 'required|integer|digits:5',
                 'phone_number' => 'required|integer',
 
@@ -70,6 +73,7 @@ class StudentController extends Controller
         $student->date_of_birth = $request->date_of_birth;
         $student->education_level = $request->education_level;
         $student->subject = $request->subject;
+        $student->address = $request->address;
         $student->zip = $request->zip;
         $student->phone_number = $request->phone_number;
         $student->user_id = Auth::user()->id;
@@ -99,7 +103,12 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = Student::find($id);
-        return view('students.show')->withStudent($student);
+        $nearby_students = DB::table('students')
+                     ->whereBetween('zip',[$student->zip - 10,$student->zip + 10])
+                        ->get();
+                     
+
+        return view('students.show')->withStudent($student)->withNearby_students($nearby_students);
     }
 
     /**
@@ -136,6 +145,7 @@ class StudentController extends Controller
                 'date_of_birth' => 'required|before:today',
                 'education_level' => 'required|max:100',
                 'subject' => 'required|max:100',
+                'address' => 'required|max:100',
                 'zip' => 'required|integer|digits:5',
                 'phone_number' => 'required|integer',
                 ));
@@ -147,6 +157,7 @@ class StudentController extends Controller
         $student->date_of_birth = $request->input('date_of_birth');
         $student->education_level = $request->input('education_level');
         $student->subject = $request->input('subject');
+        $student->address = $request->input('address');
         $student->zip = $request->input('zip');
         $student->phone_number = $request->input('phone_number');
         

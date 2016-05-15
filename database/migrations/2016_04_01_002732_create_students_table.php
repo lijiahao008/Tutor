@@ -20,7 +20,7 @@ class CreateStudentsTable extends Migration
             $table->string('education_level');
             $table->string('address');
             $table->integer('zip');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('subject');
             $table->integer('user_id');
             $table->timestamps();

@@ -59,7 +59,7 @@ class TutorController extends Controller
                 'education_level' => 'required|max:100',
                 'address' => 'required|max:100',
                 'zip' => 'required|integer|digits:5',
-                'phone_number' => 'required|integer',
+                'phone_number' => 'required|max:20',
                 'rate_per_hour' => 'required|integer',
                 'subject' => 'required|max:50',
                 
@@ -146,7 +146,7 @@ class TutorController extends Controller
                 'education_level' => 'required|max:100',
                 'address' => 'required|max:100',
                 'zip' => 'required|integer|digits:5',
-                'phone_number' => 'required|integer',
+                'phone_number' => 'required|max:20',
                 'rate_per_hour' => 'required|integer',
                 'subject' => 'required|max:50',
 

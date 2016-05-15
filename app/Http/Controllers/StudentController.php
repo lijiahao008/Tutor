@@ -61,7 +61,7 @@ class StudentController extends Controller
                 'subject' => 'required|max:100',
                 'address' => 'required|max:100',
                 'zip' => 'required|integer|digits:5',
-                'phone_number' => 'required|integer',
+                'phone_number' => 'required|max:20',
 
               
                 ));
@@ -147,7 +147,7 @@ class StudentController extends Controller
                 'subject' => 'required|max:100',
                 'address' => 'required|max:100',
                 'zip' => 'required|integer|digits:5',
-                'phone_number' => 'required|integer',
+                'phone_number' => 'required|max:20',
                 ));
 
         $student = Student::find($id);

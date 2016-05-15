@@ -59,9 +59,8 @@
     	<div class="col-sm-9">
           
           <ul class="nav nav-tabs" id="myTab">
-            <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+            <li class="active"><a href="#home" data-toggle="tab">Matching Histories</a></li>
             <li><a href="#messages" data-toggle="tab">Messages</a></li>
-            <li><a href="#settings" data-toggle="tab">Settings</a></li>
           </ul>
               
           <div class="tab-content">
@@ -188,7 +187,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">Nearby Students</div>
                     <div class="panel-body">
-                      <div id="map_canvas">
+                      <div id="map">
                       
                       </div>
                     </div>
@@ -215,125 +214,75 @@
                 </ul> 
                
              </div><!--/tab-pane-->
-             <div class="tab-pane" id="settings">
-            		
-               	
-                  <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Mobile</h4></label>
-                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Location</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h4>Password</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="password2"><h4>Verify</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                            </div>
-                      </div>
-              	</form>
-              </div>
-               
-              </div><!--/tab-pane-->
+             
           </div><!--/tab-content-->
 
         </div><!--/col-9-->
     </div><!--/row-->
-<script> var addresses = []; 
+<script> 
+        var addresses = []; 
+        var names = []; 
 </script>
   @foreach ($nearby_students as $nearby_student)
     <script>
-      addresses.push("{{$nearby_student->address}}");
+      addresses.push("{{$nearby_student->address}}"+" "+"{{$nearby_student->zip}}");
+      names.push("{{$nearby_student->first_name}}");
     </script>
   @endforeach
 <script>
-$(document).ready(function () {
-    var map;
-    $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+'"{{$student->address}}"'+'&sensor=false', null, function (data) {
-    var center = data.results[0].geometry.location
-    var center_latlng = new google.maps.LatLng(center.lat, center.lng);
-    var myOptions = {
-        zoom: 12,
-        center: center_latlng,
-        mapTypeId: 'roadmap'
-    };
-    map = new google.maps.Map($('#map_canvas')[0], myOptions);
+  function loadScript() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' + 'callback=initialize';
+    document.body.appendChild(script);
+  }
+  window.onload = loadScript;
+
+function initialize() {
+    window.map = new google.maps.Map(document.getElementById('map'), {
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-   
-    for (var x = 0; x < addresses.length; x++) {
-        $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+addresses[x]+'&sensor=false', null, function (data) {
-            var p = data.results[0].geometry.location
-            var latlng = new google.maps.LatLng(p.lat, p.lng);
-            new google.maps.Marker({
-                position: latlng,
-                map: map
-            });
 
-        });
-    }
+    var infowindow = new google.maps.InfoWindow();
+    var bounds = new google.maps.LatLngBounds();
 
-});
+  function placeMarker( address, name ) {
+
+    $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='
+      +address+'&sensor=false', null, function (data) {
+      var p = data.results[0].geometry.location
+      var latlng = new google.maps.LatLng(p.lat, p.lng);
+      var marker = new google.maps.Marker({
+                  position: latlng,
+                  map: map
+                });
+      bounds.extend(marker.position);
+    
+      google.maps.event.addListener(marker, 'click', function(){
+          infowindow.close(); // Close previously opened infowindow
+          infowindow.setContent(name);
+          infowindow.open(map, marker);
+      });
+    });
+  }
+          
+  for (i = 0; i < addresses.length; i++) {
+      var name = names[i].toString();
+    placeMarker(addresses[i],name);
+  }
+
+    map.fitBounds(bounds);
+}
+
+
 </script>
 <style>
-#map_canvas {
+#map {
             width: 500px;
             height: 200px;
         }
 </style>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;.js"></script>
+
 
 
 

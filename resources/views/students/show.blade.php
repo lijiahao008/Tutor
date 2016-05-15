@@ -221,12 +221,14 @@
     </div><!--/row-->
 <script> 
         var addresses = []; 
-        var names = []; 
+        var names = [];
+        var ids = []; 
 </script>
   @foreach ($nearby_students as $nearby_student)
     <script>
       addresses.push("{{$nearby_student->address}}"+" "+"{{$nearby_student->zip}}");
       names.push("{{$nearby_student->first_name}}");
+      ids.push("{{$nearby_student->id}}");
     </script>
   @endforeach
 <script>
@@ -246,7 +248,7 @@ function initialize() {
     var infowindow = new google.maps.InfoWindow();
     var bounds = new google.maps.LatLngBounds();
 
-  function placeMarker( address, name ) {
+  function placeMarker( address, name, id ) {
 
     $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='
       +address+'&sensor=false', null, function (data) {
@@ -260,7 +262,7 @@ function initialize() {
     
       google.maps.event.addListener(marker, 'click', function(){
           infowindow.close(); // Close previously opened infowindow
-          infowindow.setContent(name);
+          infowindow.setContent('<a href="../students/'+id+'">'+name+'</a>');
           infowindow.open(map, marker);
       });
     });
@@ -268,7 +270,8 @@ function initialize() {
           
   for (i = 0; i < addresses.length; i++) {
       var name = names[i].toString();
-    placeMarker(addresses[i],name);
+      var id = ids[i].toString();
+    placeMarker(addresses[i],name,id);
   }
 
     map.fitBounds(bounds);

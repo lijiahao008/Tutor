@@ -36,7 +36,7 @@
           </ul> 
 
           
-          <ul class="list-group">
+           <ul class="list-group">
             <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
@@ -47,15 +47,15 @@
           <div class="panel panel-default">
             <div class="panel-heading">Social Media</div>
             <div class="panel-body">
-            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+              <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
             </div>
           </div>
           
         </div><!--/col-3-->
-    	<div class="col-sm-9">
+      <div class="col-sm-9">
           
           <ul class="nav nav-tabs" id="myTab">
-            <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+            <li class="active"><a href="#home" data-toggle="tab">Matching Histories</a></li>
             <li><a href="#messages" data-toggle="tab">Messages</a></li>
           </ul>
               
@@ -170,16 +170,18 @@
                 <hr>
                 <div class="row">
                   <div class="col-md-4 col-md-offset-4 text-center">
-                  	<ul class="pagination" id="myPager"></ul>
+                    <ul class="pagination" id="myPager"></ul>
                   </div>
                 </div>
               </div><!--/table-resp-->
               
               <hr>
               
+
+              
               <div class="table-responsive">
                 <div class="panel panel-default">
-                  <div class="panel-heading">Nearby Students</div>
+                  <div class="panel-heading">Nearby Tutors</div>
                     <div class="panel-body">
                       <div id="map">
                       
@@ -187,7 +189,9 @@
                     </div>
                 </div>
               </div>
-
+              
+              
+             </div><!--/tab-pane-->
              <div class="tab-pane" id="messages">
                
                <h2></h2>
@@ -211,7 +215,7 @@
 
         </div><!--/col-9-->
     </div><!--/row-->
-
+  </div>
 <script> 
         var addresses = []; 
         var names = []; 

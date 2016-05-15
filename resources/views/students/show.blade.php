@@ -219,6 +219,7 @@
 
         </div><!--/col-9-->
     </div><!--/row-->
+  </div>
 <script> 
         var addresses = []; 
         var names = [];

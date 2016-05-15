@@ -57,6 +57,7 @@ class TutorController extends Controller
                 'last_name' => 'required|max:50',
                 'date_of_birth' => 'required|before:today',
                 'education_level' => 'required|max:100',
+                'address' => 'required|max:100',
                 'zip' => 'required|integer|digits:5',
                 'phone_number' => 'required|integer',
                 'rate_per_hour' => 'required|integer',
@@ -72,6 +73,7 @@ class TutorController extends Controller
         $tutor->last_name = $request->last_name;
         $tutor->date_of_birth = $request->date_of_birth;
         $tutor->education_level = $request->education_level;
+        $tutor->address = $request->address;
         $tutor->zip = $request->zip;
         $tutor->phone_number = $request->phone_number;
         $tutor->rate_per_hour = $request->rate_per_hour;
@@ -103,7 +105,10 @@ class TutorController extends Controller
     public function show($id)
     {
         $tutor = Tutor::find($id);
-        return view('tutors.show')->withTutor($tutor);
+        $nearby_tutors = DB::table('tutors')
+                     ->whereBetween('zip',[$tutor->zip - 10,$tutor->zip + 10])
+                        ->get();
+        return view('tutors.show')->withTutor($tutor)->withNearby_tutors($nearby_tutors);;
     }
 
     /**
@@ -139,6 +144,7 @@ class TutorController extends Controller
                 'last_name' => 'required|max:50',
                 'date_of_birth' => 'required|before:today',
                 'education_level' => 'required|max:100',
+                'address' => 'required|max:100',
                 'zip' => 'required|integer|digits:5',
                 'phone_number' => 'required|integer',
                 'rate_per_hour' => 'required|integer',
@@ -152,6 +158,7 @@ class TutorController extends Controller
         $tutor->last_name = $request->input('last_name');
         $tutor->date_of_birth = $request->input('date_of_birth');
         $tutor->education_level = $request->input('education_level');
+        $tutor->address = $request->input('address');
         $tutor->zip = $request->input('zip');
         $tutor->phone_number = $request->input('phone_number');
         $tutor->rate_per_hour = $request->input('rate_per_hour');

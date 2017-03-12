@@ -18,7 +18,8 @@
         @endif
       </div>
         @if (Storage::disk('local')->has($student->last_name . '-' . $student->id . '.jpg'))
-          <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="{{ route('student.photo', ['filename' => $student->last_name . '-' . $student->id . '.jpg']) }}"></a></div>
+          <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" 
+            src="{{ route('student.photo', ['filename' => $student->last_name . '-' . $student->id . '.jpg']) }}"></a></div>
         @endif
         
       

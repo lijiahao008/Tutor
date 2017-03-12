@@ -56,7 +56,7 @@
     						{{ Form::text ('phone_number', null,array('class'=>'form-control'))}}
 
     						{{ Form::label('subject', 'Interested Subject:')}}
-    						{{ Form::select('subject', array('Computer Science','English', 'Math'),array('class'=>'form-control'),['placeholder' => 'Pick a subject...']) }}
+    						{{ Form::select('subject', array('Computer Science'=>'Computer Science','English'=>'English', 'Math'=>'Math'),array('class'=>'form-control'),['placeholder' => 'Pick a subject...']) }}
 
     						{{ Form::submit('Create', array('class' => 'btn btn-success btn-lg btn-block', 'style'=>'margin-top: 20px;')) }}
                         <br>
